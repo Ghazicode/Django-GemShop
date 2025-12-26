@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>تغییر رمز عبور</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; max-width: 500px; margin: 40px auto; padding: 20px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        form { display: flex; flex-direction: column; }
+        .form-group { margin-bottom: 15px; }
+        label { font-weight: bold; margin-bottom: 5px; display: block; }
+        input { padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; }
+        .helptext { font-size: 12px; color: #666; }
+        button { background-color: #007bff; color: white; padding: 12px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        button:hover { background-color: #0056b3; }
+        .messages { list-style: none; padding: 0; }
+        .success { color: #155724; background-color: #d4edda; padding: 10px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <h2>تغییر رمز عبور</h2>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.old_password.label_tag }}
+            {{ form.old_password }}
+            {% if form.old_password.help_text %}
+                <p class="helptext">{{ form.old_password.help_text }}</p>
+            {% endif %}
+            {{ form.old_password.errors }}
+        </div>
+
+        <div class="form-group">
+            {{ form.new_password1.label_tag }}
+            {{ form.new_password1 }}
+            {% if form.new_password1.help_text %}
+                <p class="helptext">{{ form.new_password1.help_text }}</p>
+            {% endif %}
+            {{ form.new_password1.errors }}
+        </div>
+
+        <div class="form-group">
+            {{ form.new_password2.label_tag }}
+            {{ form.new_password2 }}
+            {% if form.new_password2.help_text %}
+                <p class="helptext">{{ form.new_password2.help_text }}</p>
+            {% endif %}
+            {{ form.new_password2.errors }}
+        </div>
+        
+        <button type="submit">تغییر رمز</button>
+    </form>
+</body>
+</html>

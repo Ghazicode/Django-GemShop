@@ -1,0 +1,400 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CODMGAME</title>
+
+    <!-- Bootstrap CSS (RTL Version) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css">
+    
+    <!-- Font Awesome (for icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Google Fonts - Vazirmatn (for Farsi font) -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS - MUST be after Bootstrap CSS to override/extend it -->
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+</head> 
+<body>
+
+    <!-- Header Section - NEW DESIGN -->
+    <header class="text-white py-3">
+        <div class="container d-flex align-items-center justify-content-between">
+            
+            <!-- Right Side: Logo and Main Nav Links -->
+            <div class="d-flex align-items-center">
+                <!-- Logo -->
+                <div class="logo me-4"> <!-- Added margin-end for spacing -->
+                    <a href="{% url "home:main" %}">
+                        <img src="{% static "img/Logo.webp" %}" alt="لوگو codmgame" style="height: 40px;"> <!-- Placeholder for your logo image -->
+                    </a>
+                </div>
+
+                <!-- Main Navigation Links -->
+                <nav class="navbar navbar-expand-lg navbar-dark p-0">
+                    <div class="container-fluid p-0">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav"> 
+                                <!-- Services Dropdown - Updated as per image -->
+                                <li class="nav-item dropdown ms-3">
+                                    <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        خدمات
+                                    </a>
+                                    <ul class="dropdown-menu text-end" aria-labelledby="servicesDropdown">
+                                        <!-- Nested Dropdown: خرید جم بازی‌های موبایل -->
+                                        <li class="dropdown-item dropend">
+                                            <a class="dropdown-toggle" href="#" id="mobileGamesGemDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                خرید جم بازی‌های موبایل
+                                            </a>
+                                            <ul class="dropdown-menu text-end" aria-labelledby="mobileGamesGemDropdown">
+                                                <li><a class="dropdown-item" href="#">خرید سی پی کالاف دیوتی موبایل</a></li>
+                                                <li><a class="dropdown-item" href="#">خرید جم فری فایر</a></li>
+                                                <li><a class="dropdown-item" href="#">خرید جم کلش اف کلنز</a></li>
+                                                <li><a class="dropdown-item" href="#">خرید جم موبایل لجندز</a></li>
+                                                <li><a class="dropdown-item" href="#">خرید جم کلش رویال</a></li>
+                                                <li><a class="dropdown-item" href="#">خرید سکه و دلار ساکر استارز</a></li>
+                                                <li><a class="dropdown-item" href="#">خرید کوین اسکوات باستررز</a></li>
+                                            </ul>
+                                        </li>
+                                        <!-- Nested Dropdown: خرید انواع گیفت کارت -->
+                                        <li class="dropdown-item dropend">
+                                            <a class="dropdown-toggle" href="#" id="giftCardsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                خرید انواع گیفت کارت
+                                            </a>
+                                            <ul class="dropdown-menu text-end" aria-labelledby="giftCardsDropdown">
+                                                <li><a class="dropdown-item" href="#">گیفت کارت گوگل پلی</a></li>
+                                                <li><a class="dropdown-item" href="#">گیفت کارت آیتونز</a></li>
+                                                <li><a class="dropdown-item" href="#">گیفت کارت پلی استیشن</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><hr class="dropdown-divider"></li> <!-- Separator -->
+                                        <li><a class="dropdown-item" href="#">ثبت رایگان آگهی فروش اکانت</a></li>
+                                        <li><a class="dropdown-item" href="#">کسب درآمد با موجودجم</a></li>
+                                        <!-- Removed old links: صفحه اصلی, محصولات, وبلاگ, درباره ما, پنل مدیریت for a cleaner main header -->
+                                    </ul>
+                                </li>
+                                <li class="nav-item ms-3">
+                                    <a class="nav-link" href="{% url "home:main" %}">خانه</a>
+                                </li>
+                                <li class="nav-item ms-3">
+                                    <a class="nav-link" href="{% url "product:pricelists" %}">لیست قیمت جم</a>
+                                </li>
+                                <li class="nav-item ms-3">
+                                   <a class="nav-link" href="#">اپلیکیشن</a>
+                                </li>
+                                <li class="nav-item ms-3">
+                                    <a class="nav-link" href="{% url "account:contact" %}">تماس با ما</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+
+            <!-- Center: Search Bar -->
+            <div class="header-search-container mx-auto"> 
+                <input type="text" name="q" class="form-control header-search-input text-end" placeholder="جستجو کنید" aria-label="Search">
+                <button class="btn header-search-btn" type="button"><i class="fas fa-search"></i></button>
+            </div>
+
+            <!-- Left Side: Cart, Auth, Dark/Light Mode -->
+            <!-- Reordered to match image: Cart -> Auth -> Dark/Light -->
+            <div class="d-flex align-items-center">
+                <!-- Shopping Cart Button -->
+                <a href="{% url "cart:cart_detail" %}" class="btn btn-outline-light header-icon-btn me-2">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+                <!-- Login/Register Button -->
+                {% if request.user.is_authenticated %}
+                    {% if request.user.is_admin %}
+                 <a href="/GEMSHOP" class="btn btn-outline-light d-flex align-items-center me-2 header-auth-btn">
+                    <i class="fas fa-user ms-2"></i>
+                     
+                    {% if request.user.fullname %}
+                        {{ request.user.fullname }}
+                        {% else %}
+                        {{ request.user.phone }}
+                    {% endif %}
+                   
+
+                </a>
+                {% else %}
+                    <a href="{% url "account:user" %} " class="btn btn-outline-light d-flex align-items-center me-2 header-auth-btn">
+                    <i class="fas fa-user ms-2"></i>
+                     
+                    {% if request.user.fullname %}
+                        {{ request.user.fullname }}
+                        {% else %}
+                        {{ request.user.phone }}
+                    {% endif %}
+                    
+                    </a>
+                {% endif %}
+
+                {% else %}
+                <a href="{% url "account:login" %}" class="btn btn-outline-light d-flex align-items-center me-2 header-auth-btn">
+                    <i class="fas fa-user ms-2"></i> 
+                    ورود و ثبت نام
+                </a>
+                {% endif %}
+                <!-- Dark/Light Mode Toggle Button -->
+                <div class="dark-mode-toggle">
+                    <button class="btn btn-outline-light rounded-circle p-2" id="theme-toggle" aria-label="Toggle dark and light mode">
+                        <i class="fas fa-moon"></i> <!-- Default icon for dark mode -->
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- Main Content Section for Shopping Cart -->
+    <main class="container my-4">
+        <h2 class="text-center mb-4">سبد خرید شما</h2>
+
+        <div class="row g-4">
+            <!-- Right Column: Order Summary -->
+            <div class="col-lg-5 order-lg-2"> <!-- Order 2 to place it on the right in RTL -->
+                <div class="card p-4 shadow-sm h-100">
+                    <div class="card-body">
+                        <h4 class="mb-3">خلاصه سفارش</h4>
+                        
+                        <!-- Example Cart Item -->
+                        
+                         {% for item in cart %}
+                        <div class="d-flex align-items-center mb-3 pb-3 border-bottom border-secondary-subtle">
+                            
+                            <img src="{{ item.product.image.url }}" alt="CP Product" class="img-fluid rounded me-3" style="width: 60px; height: 60px; object-fit: cover;">
+                            <div class="flex-grow-1">
+                                <h5 class="mb-1">{{ item.product.title }}</h5>
+                                <p class="text-muted mb-0">{{ item.product.gamename }}</p>
+                            </div>
+                            <div class="text-end">
+                                <p class="mb-0 fw-bold formatted-price">{{ item.price }} </p> <span>تومان</span>
+                                <div class="input-group input-group-sm mt-1" style="width: 100px;">
+                                    تعداد: {{ item.quantity }}
+                                </div>
+                                <!-- <button class="btn btn-link text-danger p-0 mt-1 cart-item-remove-btn" style="font-size: 0.8rem;">حذف</button> -->
+                                 <a href="{% url "cart:cart_delete" item.unique_search  %}" class="btn btn-link text-danger p-0 mt-1 cart-item-remove-btn">حذف</a>
+                            </div>
+                        </div>
+
+                        <!-- Another Example Cart Item -->
+                        
+{% endfor %}
+                        <!-- Discount/Gift Card Alert -->
+                        
+                        
+                        <ul class="list-group list-group-flush mt-4">
+                            <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0 py-2">
+                                <span>مجموع فرعی:</span>
+                                <span class="formatted-price">{{ cart.total }} </span>
+                            </li> 
+                            <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0 py-2">
+                                <span>تخفیف:</span>
+                                <span class="text-danger"></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0 py-2 fw-bold fs-5">
+                                <span>قابل پرداخت:</span>
+                                <span class="formatted-price">{{ cart.total }}</span>
+                            </li>
+                            
+                        </ul>
+                        <div class="d-grid gap-2 mt-4">
+                            <p class="text-center text-muted small">
+                                با ثبت سفارش، با <a href="#" class="text-white-50 text-decoration-none">قوانین و مقررات</a> سایت موافقت می‌کنید.
+                            </p>
+                            {% if request.user.is_authenticated %}
+                            {% if request.user.accounts.all %}
+                            {% if cart.total %}
+                            <a href="{% url "cart:order_creation" %}" class="btn btn-primary btn-lg">پرداخت و ثبت سفارش</a>
+                            {% endif %}
+                            {% else %}
+                            <p>هنوز اکانتی برای شما ثبت نشده</p>
+                            {% endif %}
+                            
+                            {% else %}
+                            <a href="{% url "account:login" %}" class="btn btn-primary btn-lg">ورود به سایت</a>
+                            {% endif %}
+                            
+                            
+                            <a href="{% url "product:pricelists" %}" class="btn btn-secondary">ادامه خرید</a>
+                            
+                            
+                        </div>
+                        
+                        <div class="d-grid gap-2 mt-4">
+                            
+                            
+                            
+                            
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- Left Column: Login Method / Account Info -->
+            <div class="col-lg-7 order-lg-1"> <!-- Order 1 to place it on the left in RTL -->
+                <div class="card p-4 shadow-sm h-100">
+                    <div class="card-body">
+                        
+
+                        <div class="row g-2 mb-4">
+                           {% if request.user.is_authenticated %}
+                            <!-- Add more login methods as needed -->
+                        </div>
+
+                        <h4 class="mb-3">اطلاعات اکانت</h4>
+                        <p class="text-muted mb-4">اطلاعات اکانت شما برای ورود به بازی الزامی می‌باشد.</p>
+                        
+                        <form action="" method="post" >
+                            {% csrf_token %}
+                            <!-- Dynamic input fields for Facebook login (initially hidden) -->
+                            
+
+                            <!-- General game account inputs (always visible or dynamically shown based on other buttons) -->
+                            <div id="generalGameInputs">
+
+                                <div class="mb-3">
+                                    <label for="gameUsername" class="form-label">نام:</label>
+                                    <input type="text" name="name" class="form-control" value="{{ request.user.fullname }}" id="gameUsername" placeholder="نام کاربری یا ایمیل اکانت بازی" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="gameUsername" class="form-label">شماره موبایل</label>
+                                    <input type="text" name="phone" class="form-control" value="{{ request.user.phone }}" id="gameUsername" placeholder="نام کاربری یا ایمیل اکانت بازی" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="gameUsername" class="form-label">ایمیل اکانت:</label>
+                                    <input type="email" name="email" class="form-control" id="gameUsername" placeholder="نام کاربری یا ایمیل اکانت بازی" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="gamePassword" class="form-label">رمز عبور اکانت:</label>
+                                    <input type="password" name="password" class="form-control" id="gamePassword" placeholder="رمز عبور مربوط به اکانت اکتیویژن را در این قسمت وارد کنید" required>
+                                    <div class="form-text text-muted">
+                                        با دقت حروف بزرگ و کوچک، رمز عبور را ثبت کنید.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="inGameName" class="form-label">ایدی درون بازی:</label>
+                                <input type="text" name="gameid" class="form-control" id="inGameName" placeholder="نام درون بازی را در این قسمت وارد کنید..." required>
+                                <div class="form-text text-muted">
+                                    لطفا ایدی بازی را با دقت املایی وارد کنید و نام خود در بازی را در این باکس درج نمایید.
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="inGameName" class="form-label">نام درون بازی:</label>
+                                <input type="text" name="gamename" class="form-control" id="inGameName" placeholder="نام درون بازی را در این قسمت وارد کنید..." required>
+                                <div class="form-text text-muted">
+                                    لطفا نام بازی را با دقت املایی وارد کنید و نام خود در بازی را در این باکس درج نمایید.
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="additionalNotes" class="form-label">توضیحات (اختیاری):</label>
+                                <textarea class="form-control" name="body" id="additionalNotes" rows="3" placeholder="توضیحات اضافی یا نکات مهم..."></textarea>
+                            </div>
+                            
+                            <div>
+                                <div class="d-grid gap-2 mt-4">
+                                    <button type="submit" class="btn btn-primary btn-lg">ثبت اطلاعات</button>
+                                </div>
+                                
+                            </div>
+                            
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    
+
+    <!-- Footer Section (Copied for consistency) -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row text-center text-md-end">
+                <div class="col-md-3 mb-3">
+                    <h5>درباره ما</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="about-us.html" class="text-white-50 text-decoration-none">معرفی</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">تیم ما</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <h5>راهنمایی</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50 text-decoration-none">سوالات متداول</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">قوانین و مقررات</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <h5>ارتباط با ما</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url "account:contact" %}" class="text-white-50 text-decoration-none">تماس</a></li>
+                        <li><a href="{% url "account:contact" %}" class="text-white-50 text-decoration-none">پشتیبانی</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <h5>اینماد</h5>
+                    <div class="enamad-placeholder bg-light p-3 rounded" style="min-height: 100px;">
+                        <p class="text-dark-50">محل لوگوی اینماد</p>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-light">
+            <div class="text-center text-white-50">
+                <p>&copy; 2025 تمام حقوق برای فروشگاه  codmgame  محفوظ است.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Custom JavaScript for cart page -->
+    <script src="{% static "js/cart.js" %}"></script>
+
+
+
+
+    <script>
+document.querySelectorAll('.formatted-price').forEach(el => {
+    // ۱. حذف کاماهای موجود و تبدیل به عدد
+    const rawPrice = el.textContent.trim().replace(/,/g, '');
+    const price = parseFloat(rawPrice);
+
+    if (isNaN(price)) {
+        console.error("مقدار قیمت نامعتبر است:", rawPrice);
+        return;
+    }
+
+    // ۲. تبدیل به رشته و افزودن جداکنندهٔ هزارگان
+    let formattedPrice = price.toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, '٬');
+
+    // ۳. تبدیل اعداد انگلیسی به فارسی (اختیاری)
+    const persianDigits = '۰۱۲۳۴۵۶۷۸۹';
+    formattedPrice = formattedPrice.replace(/[0-9]/g, d => persianDigits[d]);
+
+    el.textContent = formattedPrice;
+});
+    </script>
+
+   
+</body>
+</html>

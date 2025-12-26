@@ -1,0 +1,549 @@
+/* ------------------------------------------- */
+/* Global Variables & Colors (Dracula Palette as Default) */
+/* ------------------------------------------- */
+
+/* Dracula Palette (Default theme) */
+:root {
+    /* Base Colors - Dracula Palette */
+    --primary-bg: #282A36;      /* Main background */
+    --secondary-bg: #383A42;    /* Slightly lighter dark for cards/sections */
+    --text-color: #F8F8F2;      /* Main text color */
+    --text-muted: #BD93F9;      /* Muted text color */
+    --border-color: #44475A;    /* Border and divider color */
+    --heading-color: #F8F8F2;   /* Headings color */
+
+    /* Accent & Status Colors - Dracula Palette */
+    --accent-primary: #50FA7B;  /* Primary accent/button color (e.g., green) */
+    --accent-secondary: #8BE9FD; /* Secondary accent/link color (e.g., cyan) */
+    --status-error: #FF5555;    /* Error message color */
+    --status-warning: #F1FA8C;  /* Warning/info color */
+    --status-success: #28A745; /* Success message color */
+
+
+    /* Header & Footer specific - Adjusted for this dark theme */
+    --header-footer-bg: #21222C; /* Even darker background for header/footer */
+    --header-footer-text: #F8F8F2; /* Text color for header/footer */
+    --header-footer-link: #8BE9FD; /* Link color for header/footer */
+}
+
+/* Light Mode Variables (Applied when .light-mode is on body) */
+body.light-mode {
+    /* Base Colors - Light Palette */
+    --primary-bg: #FFFFFF;         /* Main background */
+    --secondary-bg: #F0F2F5; /* Slightly darker background for cards/sections */
+    --text-color: #212529;      /* Main text color */
+    --text-muted: #6C757D;    /* Muted text color */
+    --border-color: #DEE2E6;       /* Border and divider color */
+    --heading-color: #343A40;   /* Headings color */
+
+    /* Accent & Status Colors - Light Palette */
+    --accent-primary: #007BFF;    /* Primary accent/button color (e.g., Bootstrap blue) */
+    --accent-secondary: #17A2B8;   /* Secondary accent/link color */
+    --status-error: #DC3545;       /* Error message color */
+    --status-warning: #FFC107;     /* Warning/info color */
+    --status-success: #28A745; /* Success message color */
+
+    /* Header & Footer specific - Adjusted for light mode */
+    --header-footer-bg: #F8F9FA; /* Light gray for header/footer */
+    --header-footer-text: #212529; /* Dark text for header/footer */
+    --header-footer-link: #495057; /* Muted link color */
+}
+
+
+/* ------------------------------------------- */
+/* General Body & Global Styles */
+/* ------------------------------------------- */
+
+body {
+    font-family: 'Vazirmatn', sans-serif; /* Or any other suitable Farsi font */
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for theme change */
+    text-align: right; /* Ensure global text alignment for RTL */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+}
+
+/* Specific alignment for section titles as per wireframe */
+.products-section h2,
+.popular-products-section h2 {
+    text-align: center;
+}
+
+a {
+    color: var(--accent-primary); /* Links will use primary accent color by default */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-secondary); /* Hover links will use secondary accent */
+}
+
+/* Ensure images don't overflow */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ------------------------------------------- */
+/* Header Styles */
+/* ------------------------------------------- */
+
+header {
+    background-color: var(--header-footer-bg); /* Use variable, no !important here */
+    color: var(--header-footer-text); /* Use variable, no !important here */
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for theme change */
+}
+
+/* New header specific styles */
+header .logo img {
+    border-radius: 0; /* Ensure logo image is not rounded by default Bootstrap */
+}
+
+header .dropdown-toggle {
+    background-color: transparent !important;
+    border-color: var(--header-footer-text) !important;
+    color: var(--header-footer-text) !important;
+}
+header .dropdown-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+header .dropdown-menu {
+    background-color: var(--secondary-bg);
+    border-color: var(--border-color);
+}
+header .dropdown-item {
+    color: var(--text-color);
+}
+header .dropdown-item:hover {
+    background-color: var(--accent-primary);
+    color: var(--primary-bg);
+}
+
+/* Nested dropdowns styling */
+.dropdown-menu .dropend .dropdown-toggle::after {
+    margin-right: 0.5em; /* Space between text and arrow in RTL */
+    margin-left: 0;
+    vertical-align: middle;
+    border-left: 0;
+    border-right: 0.3em solid; /* Right arrow for dropend in RTL */
+}
+.dropdown-menu .dropend .dropdown-menu {
+    margin-right: 0.5rem; /* Offset nested dropdown to the right in RTL */
+    margin-left: 0;
+}
+
+
+header .navbar-nav .nav-link {
+    color: var(--header-footer-link) !important; /* Navigation links color */
+    transition: color 0.3s ease;
+    padding-left: 1rem !important; /* Adjust spacing for RTL nav links */
+    padding-right: 0.5rem !important; /* Adjust spacing for RTL nav links */
+}
+
+header .navbar-nav .nav-link.active,
+header .navbar-nav .nav-link:hover {
+    color: var(--accent-primary) !important; /* Active/hover state for nav links */
+}
+
+/* Search bar styling */
+.header-search-container {
+    position: relative;
+    max-width: 300px; /* Limit width as per image */
+    flex-grow: 1; /* Allow it to grow in flex container */
+    margin-left: auto; /* Push to center/left */
+    margin-right: auto; /* Push to center/right */
+}
+.header-search-container .header-search-input {
+    background-color: var(--primary-bg) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+    padding-right: 1.25rem; /* Space for placeholder/text */
+    padding-left: 2.5rem; /* Space for search icon */
+    border-radius: 50rem !important; /* Make it pill-shaped */
+    height: 40px; /* Fixed height to match buttons */
+}
+.header-search-container .header-search-input::placeholder {
+    color: var(--text-muted);
+}
+.header-search-container .header-search-input:focus {
+    border-color: var(--accent-primary) !important;
+    box-shadow: 0 0 0 0.25rem rgba(80, 250, 123, 0.25) !important;
+}
+.header-search-container .header-search-btn {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    color: var(--text-muted) !important;
+    position: absolute; /* Position icon inside input group */
+    left: 0.5rem; /* Position to the left in RTL */
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2; /* Ensure icon is clickable */
+    padding: 0.5rem; /* Adjust padding to make icon clickable area larger */
+}
+.header-search-container .header-search-btn:hover {
+    color: var(--accent-primary) !important;
+}
+
+
+/* Dark Mode Toggle Button */
+.dark-mode-toggle .btn {
+    background-color: transparent !important;
+    border: 1px solid var(--header-footer-text); /* Border color based on text */
+    color: var(--header-footer-text) !important;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    width: 40px; /* Fixed width for rounded button */
+    height: 40px; /* Fixed height for rounded button */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dark-mode-toggle .btn:hover {
+    background-color: var(--accent-primary) !important;
+    border-color: var(--accent-primary) !important;
+    color: var(--primary-bg) !important; /* Text color changes on hover for better contrast */
+}
+
+/* Adjust icon size */
+.dark-mode-toggle .btn i {
+    width: auto; /* Let icon size naturally */
+    text-align: center;
+}
+
+
+/* Styling for btn-outline-light (e.g., cart button, login/register button) */
+.btn-outline-light {
+    color: var(--header-footer-text) !important;
+    border-color: var(--header-footer-text) !important;
+    transition: all 0.3s ease;
+}
+.btn-outline-light:hover {
+    background-color: var(--accent-primary) !important;
+    border-color: var(--accent-primary) !important;
+    color: var(--primary-bg) !important;
+}
+
+/* Specific styling for the "ورود و ثبت نام" button from the image */
+.header-auth-btn {
+    border: 1px solid var(--accent-primary) !important; /* Orange border */
+    color: var(--accent-primary) !important; /* Orange text */
+    background-color: transparent !important;
+    border-radius: 0.375rem !important; /* Default Bootstrap button border-radius */
+    height: 40px; /* Fixed height to match other buttons */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header-auth-btn:hover {
+    background-color: var(--accent-primary) !important; /* Orange background on hover */
+    color: var(--primary-bg) !important; /* Dark text on hover */
+}
+
+/* Specific styling for the header icon buttons (cart, dark mode toggle) */
+.header-icon-btn {
+    width: 40px; /* Fixed width for square/circle buttons */
+    height: 40px; /* Fixed height for square/circle buttons */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 !important; /* Remove padding to make it a tight square/circle */
+    border-radius: 0.375rem !important; /* Default Bootstrap button border-radius */
+}
+.header-icon-btn i {
+    font-size: 1.2rem; /* Adjust icon size */
+}
+
+
+/* ------------------------------------------- */
+/* Main Content Sections */
+/* ------------------------------------------- */
+
+/* Hero Section specific styles */
+.hero-section {
+    display: flex;
+    align-items: center; /* Vertically center content of the row */
+    justify-content: center; /* Horizontally center the row if it doesn't fill width */
+}
+
+/* Apply secondary background and border to these elements */
+.hero-section .character-image,
+.hero-section .site-description {
+    background-color: var(--secondary-bg) !important; /* Set background to secondary-bg */
+    border-color: var(--border-color) !important; /* Set border to theme border color */
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    color: var(--text-color); /* Ensure text color applies */
+    /* Ensure content inside these boxes is vertically centered */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Center content horizontally within the box */
+    height: 100%; /* Ensure they take full height of their column */
+}
+
+/* Existing card styles for product items remain */
+.product-item.card,
+.popular-product-item.card,
+/* Also apply to general cards like in admin page or product variants page */
+.card { /* Apply general card styling from theme variables */
+    background-color: var(--secondary-bg) !important; /* Card backgrounds */
+    border-color: var(--border-color) !important; /* Card borders */
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    color: var(--text-color); /* Ensure text color applies to card content */
+}
+
+/* Specific style for product variant boxes in products.html */
+.product-variant-box {
+    min-height: 180px; /* Adjust height as needed, as per wireframe */
+    border-width: 2px !important; /* Thicker border for visual emphasis */
+}
+.product-variant-box h3 {
+    font-size: 3rem; /* Larger font size for quantity numbers */
+    color: var(--heading-color);
+}
+.product-variant-box p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+
+/* Ensure text in hero section description is aligned as per wireframe */
+.hero-section .site-description h2 {
+    text-align: right;
+    color: var(--heading-color); /* Apply heading color */
+}
+.hero-section .site-description p {
+    text-align: right;
+    color: var(--text-color); /* Apply text color */
+}
+
+.product-item.card .card-body h5,
+.popular-product-item.card .card-body p {
+    color: var(--heading-color); /* Card titles/text use heading/text colors */
+}
+
+/* Adjust Bootstrap card image top alignment for RTL */
+.product-item.card .card-img-top {
+    margin-right: auto !important; /* Center horizontally in RTL */
+    margin-left: auto !important;
+    display: block;
+}
+
+/* Bootstrap's muted text color might need override if it doesn't use --text-muted */
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* Form control styling for admin page */
+.form-control {
+    background-color: var(--primary-bg) !important;
+    color: var(--text-color) !important;
+    border: 1px solid var(--border-color) !important;
+}
+.form-control:focus {
+    background-color: var(--primary-bg) !important;
+    color: var(--text-color) !important;
+    border-color: var(--accent-primary) !important; /* Accent color on focus */
+    box-shadow: 0 0 0 0.25rem rgba(80, 250, 123, 0.25) !important; /* Green shadow */
+}
+.form-label {
+    color: var(--text-color) !important;
+}
+
+/* Alert styling for messages */
+.alert-success {
+    background-color: var(--status-success) !important;
+    color: var(--primary-bg) !important; /* Text color for success alert */
+    border-color: var(--status-success) !important;
+}
+.alert-danger {
+    background-color: var(--status-error) !important;
+    color: var(--primary-bg) !important; /* Text color for error alert */
+    border-color: var(--status-error) !important;
+}
+.alert-info { /* For discount alert in cart */
+    background-color: var(--accent-secondary) !important;
+    color: var(--primary-bg) !important;
+    border-color: var(--accent-secondary) !important;
+}
+.alert-info .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%); /* Make close icon visible on dark background */
+}
+
+/* Spinner styling */
+.spinner-border {
+    color: var(--accent-primary) !important; /* Spinner color */
+}
+
+
+/* ------------------------------------------- */
+/* Footer Styles */
+/* ------------------------------------------- */
+
+footer {
+    background-color: var(--header-footer-bg); /* Removed !important here */
+    color: var(--header-footer-text); /* Removed !important here */
+    border-top: 1px solid var(--border-color);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Smooth transition for theme change */
+}
+
+footer h5 {
+    color: var(--header-footer-text); /* Ensure footer headings are visible */
+    text-align: right; /* Adjust footer heading alignment */
+}
+
+footer ul {
+    padding-right: 0; /* Remove default padding for RTL lists */
+    text-align: right; /* Align list items to the right */
+}
+
+footer ul li a {
+    color: var(--header-footer-link) !important;
+}
+
+footer ul li a:hover {
+    color: var(--accent-primary) !important;
+}
+
+.enamad-placeholder {
+    background-color: var(--secondary-bg) !important; /* Enamad placeholder background */
+    border: 1px solid var(--border-color);
+    color: var(--text-color) !important;
+    text-align: center;
+}
+
+/* ------------------------------------------- */
+/* Popular Products Carousel Styles */
+/* ------------------------------------------- */
+.popular-products-carousel-wrapper {
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+    padding: 1rem 0; /* Add some padding for visual comfort */
+}
+
+.popular-products-carousel {
+    display: flex; /* Use flexbox for horizontal layout */
+    /* flex-nowrap is already added in HTML, ensuring no wrapping */
+    scroll-behavior: smooth; /* Smooth scrolling effect */
+    -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
+    scroll-snap-type: x mandatory; /* Optional: for snapping to items if manual scroll is allowed */
+}
+
+/* Define custom column width for 5 items per row on medium screens and up */
+.popular-products-carousel .col-md-2dot4 {
+    flex: 0 0 20%; /* Don't grow, don't shrink, base width 20% */
+    max-width: 20%; /* Ensure max width is 20% */
+    scroll-snap-align: start; /* Align item to the start for scroll snap */
+}
+
+/* Adjust for smaller screens: 2 items per row (50%) on mobile, 3 items (33.33%) on small tablet */
+@media (max-width: 767.98px) { /* Small devices (landscape phones, 576px and up) */
+    .popular-products-carousel .col-6 { /* Already existing Bootstrap class */
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+@media (min-width: 768px) and (max-width: 991.98px) { /* Medium devices (tablets, 768px and up) */
+    .popular-products-carousel .col-sm-4 { /* Already existing Bootstrap class */
+        flex: 0 0 33.333333%; /* Show 3 items */
+        max-width: 33.333333%;
+    }
+}
+
+/* Ensure card inside col takes full width */
+.popular-products-carousel .popular-product-item {
+    width: 100%;
+}
+
+
+/* ------------------------------------------- */
+/* Responsive adjustments using Media Queries */
+/* ------------------------------------------- */
+@media (max-width: 991.98px) { /* Applies to screens smaller than large (lg) breakpoint */
+    /* Header adjustments for smaller screens */
+    header .container {
+        flex-wrap: wrap; /* Allow items to wrap */
+        justify-content: center !important; /* Center items for small screens */
+        text-align: center;
+    }
+    header .logo { /* Logo is not present in new header, but keeping for safety if re-added */
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    header .d-flex.align-items-center { /* Main flex container for header items */
+        width: 100%;
+        justify-content: center !important;
+        flex-direction: column; /* Stack items vertically */
+    }
+    header .dropdown,
+    header .navbar,
+    header .header-search-container, /* Changed from .search-bar */
+    header .dark-mode-toggle,
+    header .btn-outline-light,
+    header .btn-primary {
+        width: 100%; /* Make all header elements take full width on small screens */
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        margin-bottom: 10px; /* Add space between stacked items */
+    }
+    header .navbar .navbar-toggler {
+        margin: 0 auto; /* Center toggler */
+        margin-bottom: 10px;
+    }
+    header .navbar-collapse {
+        text-align: center;
+    }
+    header .navbar-nav {
+        flex-direction: column; /* Stack nav items vertically */
+        align-items: center; /* Center nav items */
+    }
+    header .navbar-nav .nav-item {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        margin-bottom: 5px;
+    }
+    header .header-search-container .header-search-input { /* Changed from .search-bar */
+        width: calc(100% - 40px); /* Adjust width for button */
+    }
+    header .header-search-container .header-search-btn { /* Changed from .search-bar */
+        position: relative; /* Adjust positioning for button */
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+
+    /* Hero section for small screens */
+    .hero-section .col-md-6 {
+        text-align: center !important; /* Center content */
+    }
+    .hero-section .site-description h2,
+    .hero-section .site-description p {
+        text-align: center; /* Center text in description */
+    }
+
+    /* Footer for small screens */
+    footer .col-md-3 {
+        text-align: center !important;
+    }
+    footer h5, footer ul {
+        text-align: center !important;
+    }
+}
+
+/* Adjustments for Bootstrap's default LTR assumptions on some elements for RTL */
+.form-check-input {
+    margin-left: 0.5em; /* Default Bootstrap LTR margin, adjust for RTL */
+    margin-right: 0;
+}
+.form-check {
+    padding-right: 1.5em;
+    padding-left: 0;
+}
